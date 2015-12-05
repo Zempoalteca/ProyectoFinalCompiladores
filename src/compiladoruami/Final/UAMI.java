@@ -57,7 +57,7 @@ public class UAMI {
                 FileWriter w3 = new FileWriter(archivo_obj);
                 bw3 = new BufferedWriter(w3);
                 wr3 = new PrintWriter(bw3);
-                wr3.append("Contenido del archivo obj: \n");
+                wr3.append("Contenido del archivo obj: \n\n");
                 
             } else {
                 archivo_tpl.delete();
