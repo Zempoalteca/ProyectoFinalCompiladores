@@ -83,7 +83,11 @@ public class Globales {
     public final String ERROR_S = "ERROR SINTÁCTICO";
     public final String ENUNC_VALIDO = "ENUNCIADO VALIDO";
     public final String EXP_VALIDA = "EXPRESION VALIDA";
-    
+    public final String COM_MAL_CERRADO = "SE CERRO MAL UN COMENTARIO";
+    public final String CAD_MAL_CERRADA = "SE CERRO MAL UNA CADENA";
+    public final String PYTHON_MAL_CERRADO = "SE CERRO MAL UN OPERADOR OR";
+    public final String AMPERSAND_MAL_CERRADO = "SE CERRO MAL UN OPERADOR AND";
+    public final String OP_LOG_MAL_CERRADO = "COMBINACION INCORRECTA DE SIMBOLOS";
     
     /*********************************************************************/
     /**************Tokens para el generador de codigo*********************/
