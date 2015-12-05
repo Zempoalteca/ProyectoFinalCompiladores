@@ -28,7 +28,7 @@ public class Globales {
     public final String HAZ = "haz";
     public final String DUMP = "dump";
     public final String HALT = "halt";
-    public final String REPITE = "repìte";
+    public final String REPITE = "repite";
     public final String HASTA = "hasta";
     public final String PARA = "para";
     public final String A = "a";
