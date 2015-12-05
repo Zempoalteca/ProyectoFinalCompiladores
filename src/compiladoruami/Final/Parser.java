@@ -101,19 +101,20 @@ public class Parser {
     }
 
     private void Enunc_impresion() throws IOException {
-        int primeraLinea = UAMI.linea;
-        int lineaActual;
+        //int primeraLinea = UAMI.linea;
+        //int lineaActual;
         Parea(G1.IMPRIME);
         Parea("(");
         GI1.Emite(G1.COPIA, preanalisis[0]);
         Parea(G1.CADENA);
-        lineaActual = UAMI.linea;
-        while (!preanalisis[0].equals(")") && lineaActual == primeraLinea) {
+        //lineaActual = UAMI.linea;
+        while (!preanalisis[0].equals(")") /*&& lineaActual == primeraLinea*/) {
             Parea(",");
             Expresion();
-            lineaActual = UAMI.linea;
+            //lineaActual = UAMI.linea;
+            GI1.Emite(G1.ELIMINA, null);
         }
-        GI1.Emite(G1.ELIMINA, null);
+        
         Parea(")");
         Parea(";");
     }
