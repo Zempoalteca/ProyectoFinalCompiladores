@@ -44,9 +44,9 @@ public class Generador_Codigo_Intermedio {
                 UAMI.wr3.append(G1.COPIA + " " + Lexema + "\n");
                 break;
             case ":=":
-                UAMI.wr3.append(G1.ASIGN + " " + Lexema + "\n");
+                UAMI.wr3.append(G1.ASIGN + "\n");
                 break;
-            //default:
+            default:
             case "OPERADOR RELACIONAL":
             case "OPERADOR LOGICO":
             case "OPERADOR DE SUMA O RESTA":
