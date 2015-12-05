@@ -121,7 +121,6 @@ public class Parser {
     private void Enunc_para() throws IOException {
         String c;
         int salida,etiqueta;
-        //int entrada = 0;                    //Verificar esta inicializacion
         Parea(G1.PARA);
         GI1.Emite(G1.VALOR_I, String.valueOf(c=preanalisis[0]));
         Parea(G1.ID);
@@ -154,7 +153,7 @@ public class Parser {
         Parea(G1.ENTONCES);
         Enunciado();
         GI1.Emite(G1.VE_A, String.valueOf(sal=etiq++));
-        if (preanalisis[1].equals(G1.OTRO)) {
+        if (preanalisis[0].equals(G1.OTRO)) {
             Parea(G1.OTRO);
             GI1.Emite(G1.ETIQUETA, String.valueOf(cond));
             Enunciado();
@@ -179,7 +178,6 @@ public class Parser {
     private void Enunc_repite() throws IOException {
         int ciclo;
         Parea(G1.REPITE);
-        System.out.println("REPITE: "+G1.REPITE);
         GI1.Emite(G1.ETIQUETA, String.valueOf(ciclo=etiq++));
         //Enunc_comp();
         while(!preanalisis[0].equals(G1.HASTA)){
