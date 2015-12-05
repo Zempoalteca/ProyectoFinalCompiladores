@@ -353,7 +353,7 @@ public class Alex {
             if (pos != -1) {
                 return pos;
             } else {
-                pos = t.Inserta_en_Tabla_Simbolos(Lexbuf, G.MODULO);
+                pos = t.Inserta_en_Tabla_Simbolos(Lexbuf, G.ADDOP);
                 return pos;
             }
             
