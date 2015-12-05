@@ -46,7 +46,7 @@ public class Generador_Codigo_Intermedio {
             case ":=":
                 UAMI.wr3.append(G1.ASIGN + "\n");
                 break;
-            default:
+            //default:
             case "OPERADOR RELACIONAL":
             case "OPERADOR LOGICO":
             case "OPERADOR DE SUMA O RESTA":
@@ -96,6 +96,8 @@ public class Generador_Codigo_Intermedio {
                         break;
                     case "||":
                         UAMI.wr3.append(G1.OR + "\n");
+                        break;
+                    default:
                         break;
                 }
         }
