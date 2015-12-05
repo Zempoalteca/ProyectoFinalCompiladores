@@ -18,18 +18,20 @@ public class Parser {
     public Globales G1;
     public Tabla_de_Simbolos T1;
     public Generador_Codigo_Intermedio GI1;
+    public Generador_de_Errores E1;
     int etiq=0;
 
-    public Parser(Alex A, Globales G, Tabla_de_Simbolos T, Generador_Codigo_Intermedio GI) {
+    public Parser(Alex A, Globales G, Tabla_de_Simbolos T, Generador_Codigo_Intermedio GI, Generador_de_Errores GE) {
         preanalisis = new String[2];
         A1 = A;
         G1 = G;
         T1 = T;
         GI1 = GI;
+        E1 = GE;
     }
 
     void Inicio() throws IOException {
-        int pos = A1.ALexico(G1, T1);
+        int pos = A1.ALexico(G1, T1, E1);
         preanalisis[0] = T1.Obtener_Lexema(pos);        //[Lexema][Token]
         preanalisis[1] = T1.Obtener_Token(pos);
         Encabezado();
@@ -79,14 +81,12 @@ public class Parser {
                 if (preanalisis[1].equals(G1.ID)) {
                     Asignacion();
                 } else {
-                    int posicion;
-                    posicion = A1.ALexico(G1, T1);
-                    preanalisis[0] = T1.Obtener_Lexema(posicion);
-                    preanalisis[1] = T1.Obtener_Token(posicion);
-                    if (!(preanalisis[1].equals(G1.ERROR)) && !(preanalisis[1].equals(G1.TOKEN_INV))) {
-                        Parea(G1.ENUNC_VALIDO);
-                    }             
-                    break;
+                    //UAMI.errores++;
+                    //UAMI.wr2.append("Error: "+UAMI.errores + " en la linea: " + UAMI.linea + "; Se esperaba un: " + G1.ENUNC_VALIDO + " tipo de error: " + G1.ERROR_S + "\n");
+                    E1.Errores(G1.ENUNC_VALIDO);
+                    int pos = A1.ALexico(G1, T1,E1);
+                    preanalisis[0] =  T1.Obtener_Lexema(pos);
+                    preanalisis[1] = T1.Obtener_Token(pos);
                 }
         }
     }
@@ -121,7 +121,7 @@ public class Parser {
     private void Enunc_para() throws IOException {
         String c;
         int salida,etiqueta;
-        int entrada = 0;
+        int entrada = 0;                    //Verificar esta inicializacion
         Parea(G1.PARA);
         GI1.Emite(G1.VALOR_I, String.valueOf(c=preanalisis[0]));
         Parea(G1.ID);
@@ -137,7 +137,7 @@ public class Parser {
         GI1.Emite(G1.SI_FALSO_VE_A, String.valueOf(salida=etiq++));
         GI1.Emite(G1.VALOR_I, c);
         GI1.Emite(G1.VALOR_D, c);
-        GI1.Emite(G1.PUSH, String.valueOf(1));      //********Verificar si en verdad esto es un 1
+        GI1.Emite(G1.PUSH, String.valueOf(1));
         GI1.Emite(G1.ADDOP, G1.MAS);
         GI1.Emite(G1.ASIGN, null);
         Parea(G1.HAZ);
@@ -242,7 +242,9 @@ public class Parser {
                     GI1.Emite(G1.VALOR_D, preanalisis[0]);
                     Parea(G1.ID);
                 }else{
-                    Parea(G1.EXP_VALIDA);
+                    //UAMI.errores++;
+                    //UAMI.wr2.append("Error: " + UAMI.errores + " en la linea " + UAMI.linea + "; Se esperaba una " + G1.EXP_VALIDA + " tipo de error: " + G1.ERROR_S + "\n");
+                    E1.Errores(G1.EXP_VALIDA);
                 }
                 
             }
@@ -252,14 +254,14 @@ public class Parser {
 
     public boolean Parea(String se_espera) throws IOException {
         if (preanalisis[0].equals(se_espera) || preanalisis[1].equals(se_espera)) {
-            int pos = A1.ALexico(G1, T1);
+            int pos = A1.ALexico(G1, T1, E1);
             preanalisis[0] = T1.Obtener_Lexema(pos);
             preanalisis[1] = T1.Obtener_Token(pos);
             return true;
         } else {
-            UAMI.errores++;
-            UAMI.wr2.append("Error " + UAMI.errores + " en la linea" + UAMI.linea + "; Se esperaba un: " + se_espera + " tipo de error: "
-                    + G1.ERROR_S + "\n");
+            //UAMI.errores++;
+            //UAMI.wr2.append("Error " + UAMI.errores + " en la linea" + UAMI.linea + "; Se esperaba un: " + se_espera + " tipo de error: "+ G1.ERROR_S + "\n");
+            E1.Errores(se_espera);
             return false;
         }
     }
