@@ -103,8 +103,9 @@ public class UAMI {
         
         GI = new Generador_Codigo_Intermedio();
         Globales G = new Globales();
+        Generador_de_Errores GE = new Generador_de_Errores();
         //Llamada al analizador sintactico
-        Parser P = new Parser(A,G,T,GI);
+        Parser P = new Parser(A,G,T,GI,GE);
         P.Inicio();
         panelResComp.append("\nLineas analizadas: " + (linea - 1));
         wr1.append("\nLineas analizadas: " + (linea - 1)+"\n");
