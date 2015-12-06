@@ -15,7 +15,7 @@ import javax.swing.JTextArea;
 
 /**
  *
- * @author Gabriel Zempoalteca Garrido
+ * @author Cecy, Lety & Gab
  */
 public class UAMI {
 
