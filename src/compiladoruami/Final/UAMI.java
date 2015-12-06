@@ -42,7 +42,7 @@ public class UAMI {
                 archivo_tpl.createNewFile();
                 archivo_err.createNewFile();
                 archivo_obj.createNewFile();
-                panelCompilacion.append("Se han creado los achivos *.tpl y *.err con exito\n\n");
+                panelCompilacion.append("Se han creado los achivos *.tpl, *.err y *.obj con exito\n\n");
                
                 FileWriter w1 = new FileWriter(archivo_tpl);
                 bw1 = new BufferedWriter(w1);
